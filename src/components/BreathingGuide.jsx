@@ -78,7 +78,8 @@ export default function BreathingGuide({ isPlaying, isEnabled, onToggleEnabled }
         <div className="breathing-box">
           <div className="breathing-ring-wrapper">
             <div className="breathing-ring-bg"></div>
-            <div className={`breathing-ring ${animationClass}`}>
+            <div className={`breathing-circle-glow ${animationClass}`}></div>
+            <div className="breathing-text-overlay">
               <span className="breathing-text">{text}</span>
             </div>
           </div>

@@ -582,8 +582,8 @@ input[type="range"]::-moz-range-thumb:hover {
 
 .breathing-ring-wrapper {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -591,50 +591,61 @@ input[type="range"]::-moz-range-thumb:hover {
 
 .breathing-ring-bg {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  border: 2px dashed rgba(var(--theme-glow), 0.2);
+  border: 2px dashed rgba(var(--theme-glow), 0.15);
+  pointer-events: none;
 }
 
-.breathing-ring {
-  width: 90px;
-  height: 90px;
+.breathing-circle-glow {
+  position: absolute;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--theme-glow), 0.4) 0%, rgba(var(--theme-glow), 0.05) 100%);
+  background: radial-gradient(circle, rgba(var(--theme-glow), 0.45) 0%, rgba(var(--theme-glow), 0.08) 100%);
   border: 2px solid var(--theme-accent);
   box-shadow: 0 0 25px rgba(var(--theme-glow), 0.4);
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 4s ease;
+  pointer-events: none;
+}
+
+/* Scaling animations on background glow circle */
+.breathing-circle-glow.inhale {
+  transform: scale(1.55);
+  box-shadow: 0 0 45px rgba(var(--theme-glow), 0.7);
+}
+
+.breathing-circle-glow.hold {
+  transform: scale(1.55);
+  box-shadow: 0 0 45px rgba(var(--theme-glow), 0.7);
+}
+
+.breathing-circle-glow.exhale {
+  transform: scale(1.0);
+  box-shadow: 0 0 20px rgba(var(--theme-glow), 0.3);
+}
+
+.breathing-text-overlay {
+  position: absolute;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Inhale, hold, exhale animation classes applied by React state */
-.breathing-ring.inhale {
-  transform: scale(1.6);
-  box-shadow: 0 0 45px rgba(var(--theme-glow), 0.7);
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.breathing-ring.hold {
-  transform: scale(1.6);
-  box-shadow: 0 0 45px rgba(var(--theme-glow), 0.7);
-  transition: none; /* Maintain size */
-}
-
-.breathing-ring.exhale {
-  transform: scale(1.0);
-  box-shadow: 0 0 20px rgba(var(--theme-glow), 0.3);
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .breathing-text {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Stats / Dashboard component */
